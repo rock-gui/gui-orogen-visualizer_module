@@ -1,0 +1,37 @@
+name "visualizer_module"
+# Optionally declare the version number
+# version "0.1"
+
+import_types_from 'base'
+import_types_from 'envire'
+
+using_library 'envire'
+using_library 'vizkit'
+using_library 'vizkit-base-viz'
+using_library 'envire-viz'
+
+task_context "Task" do
+    needs_configuration
+
+    input_port('envire_environment_in', ro_ptr('std/vector</envire/BinaryEvent>')).
+        doc("Complete envire environment")
+
+    input_port("robot_pose_in", "/base/samples/RigidBodyState").
+        doc "Position and orientation of the robot in the world"
+
+    input_port('trajectory_in', '/std/vector<base::Vector3d>').
+        doc "Single waypoints of the trajectory"
+
+    input_port("trajectory_spline_in", "std::vector</base/Trajectory>").
+        doc("Spline version of the trajectory")
+
+    input_port("motion_command_in", "base/MotionCommand2D").
+        doc "Visualizes the motion command"
+
+   periodic 0.1
+end
+
+deployment "visualize_module_deployment" do
+    task("visualize_module", "Task").
+        periodic(0.1)
+end
