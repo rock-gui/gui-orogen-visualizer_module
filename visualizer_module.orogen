@@ -31,7 +31,7 @@ task_context "Task" do
    periodic 0.1
 end
 
-deployment "visualize_module_deployment" do
-    task("visualize_module", "Task").
+deployment "visualizer_module_deployment" do
+    task("visualizer_module", "Task").
         periodic(0.1)
 end
