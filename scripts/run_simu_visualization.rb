@@ -3,8 +3,6 @@ require 'readline'
 
 include Orocos
 
-Nameservice::enable(:CORBA, :host => "127.0.0.1")
-
 Orocos.initialize
 
 Orocos.run 'visualizer_module_deployment',

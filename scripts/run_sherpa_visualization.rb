@@ -3,8 +3,9 @@ require 'readline'
 
 include Orocos
 
-Nameservice::enable(:CORBA, :host => "10.250.8.7") # Sherpa PC
-
+#Nameservice::enable(:CORBA, :host => "10.250.8.7") # Sherpa PC
+Orocos::CORBA.name_service.ip = "10.250.8.7" # Sherpa PC
+ 
 Orocos.initialize
 
 Orocos.run 'visualizer_module_deployment',
