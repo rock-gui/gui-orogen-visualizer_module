@@ -78,6 +78,7 @@ void Task::updateHook()
     base::samples::RigidBodyState rbs;
     if(_robot_pose_in.read(rbs) == RTT::NewData) {
         mRigidBodyViz.updateRigidBodyState(rbs);
+        mMotionCommandViz.updatePose(rbs.getPose());
     }
 
     // Update waypoints in vizkit
@@ -110,11 +111,6 @@ void Task::updateHook()
         RTT::log(RTT::Info) << "Received new motion command, translation " << 
                 motion_cmd.translation << ", rotation " << motion_cmd.rotation << RTT::endlog();
         mMotionCommandViz.updateMotionCommand(motion_cmd);
-
-        base::samples::RigidBodyState rbs;
-        if(_robot_pose_in.read(rbs)) { // Get the last position.
-            mMotionCommandViz.updatePose(rbs.getPose());
-        }
     }
 
     // Update envire environment
