@@ -117,6 +117,7 @@ void Task::updateHook()
     envire::OrocosEmitter::Ptr binary_event;
     if (_envire_environment_in.read(binary_event) == RTT::NewData)
     {
+        RTT::log(RTT::Info) << "Received new envire environment" << RTT::endlog();
         mEnv.applyEvents(*binary_event);  
     }   
 }

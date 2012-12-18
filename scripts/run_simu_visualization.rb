@@ -3,6 +3,7 @@ require 'readline'
 
 include Orocos
 
+Orocos::CORBA.max_message_size = 8000000
 Orocos.initialize
 
 Orocos.run 'visualizer_module_deployment',
