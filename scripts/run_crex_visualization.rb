@@ -4,8 +4,7 @@ require 'readline'
 include Orocos
 
 Orocos::CORBA.max_message_size = 8000000
-#Nameservice::enable(:CORBA, :host => "10.250.8.7") # Sherpa PC
-Orocos::CORBA.name_service.ip = "10.250.8.7" # Sherpa PC
+Orocos::CORBA.name_service.ip = "10.250.3.129" # CREX PC
  
 Orocos.initialize
 
