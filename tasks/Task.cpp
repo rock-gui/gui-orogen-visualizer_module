@@ -8,6 +8,9 @@ using namespace visualizer_module;
 
 Task::Task(std::string const& name)
     : TaskBase(name),
+        mEnv(),
+        mpEnvirePointcloud(NULL),
+        mpFrameNodePointcloud(NULL),
         mVizkit3DWidget(),
         mEnvViz(),
         mRigidBodyViz(),
@@ -20,6 +23,9 @@ Task::Task(std::string const& name)
 
 Task::Task(std::string const& name, RTT::ExecutionEngine* engine)
     : TaskBase(name, engine),
+        mEnv(),
+        mpEnvirePointcloud(NULL),
+        mpFrameNodePointcloud(NULL),
         mVizkit3DWidget(),
         mEnvViz(),
         mRigidBodyViz(),
@@ -57,6 +63,13 @@ bool Task::configureHook()
 
     mMotionCommandViz.setFrontAxis(vizkit::MotionCommandVisualization::FrontAxisX);
     mVizkit3DWidget.getWidget()->addDataHandler(&mMotionCommandViz);
+    
+    // Add pointcloud
+    mpEnvirePointcloud = new envire::Pointcloud;
+    mEnv.attachItem(mpEnvirePointcloud);
+    mpFrameNodePointcloud = new envire::FrameNode;
+    mEnv.getRootNode()->addChild(mpFrameNodePointcloud);
+    mpEnvirePointcloud->setFrameNode(mpFrameNodePointcloud);
 
     return true;
 }
@@ -79,6 +92,9 @@ void Task::updateHook()
     if(_robot_pose_in.read(rbs) == RTT::NewData) {
         mRigidBodyViz.updateRigidBodyState(rbs);
         mMotionCommandViz.updatePose(rbs.getPose());
+        
+        // Visualize pointcloud in front of the robot.
+        mpFrameNodePointcloud->setTransform(rbs.getTransform());
     }
 
     // Update waypoints in vizkit
@@ -119,7 +135,21 @@ void Task::updateHook()
     {
         RTT::log(RTT::Info) << "Received new envire environment" << RTT::endlog();
         mEnv.applyEvents(*binary_event);  
-    }   
+    }  
+    
+    // Update pointcloud
+    base::samples::Pointcloud pointcloud;
+    if(_pointcloud_in.read(pointcloud) == RTT::NewData) {
+        RTT::log(RTT::Info) << "Received new pointcloud containing " << 
+                pointcloud.points.size() << " points" << RTT::endlog();
+                
+        std::vector<base::Point>::iterator it = pointcloud.points.begin();
+        mpEnvirePointcloud->clear();
+        for(; it != pointcloud.points.end(); ++it) {
+            mpEnvirePointcloud->vertices.push_back(*it);
+        }
+        mpEnvirePointcloud->itemModified();
+    }
 }
 
 

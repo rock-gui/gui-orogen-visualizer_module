@@ -6,6 +6,7 @@
 #include "visualizer_module/TaskBase.hpp"
 
 #include <envire/Core.hpp>
+#include <envire/maps/Pointcloud.hpp>
 
 #include <vizkit/Vizkit3DWidget.hpp>
 #include <vizkit/QtThreadedWidget.hpp>
@@ -25,6 +26,8 @@ namespace visualizer_module {
     protected:
 
         envire::Environment mEnv;
+        envire::Pointcloud* mpEnvirePointcloud;
+        envire::FrameNode* mpFrameNodePointcloud;
         // Vizkit
         QtThreadedWidget<vizkit::Vizkit3DWidget> mVizkit3DWidget;
         envire::EnvireVisualization mEnvViz;

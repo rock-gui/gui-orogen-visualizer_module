@@ -27,6 +27,9 @@ task_context "Task" do
 
     input_port("motion_command_in", "base/MotionCommand2D").
         doc "Visualizes the motion command"
+        
+    input_port("pointcloud_in", "base/samples/Pointcloud").
+        doc "Visualizes the pointcloud"
 
    periodic 0.1
 end
