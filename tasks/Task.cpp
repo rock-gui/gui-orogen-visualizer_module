@@ -51,18 +51,18 @@ bool Task::configureHook()
     }
    
     mVizkit3DWidget.start();
-    mVizkit3DWidget.getWidget()->addDataHandler(&mEnvViz);
+    mVizkit3DWidget.getWidget()->addPlugin(&mEnvViz);
     mEnvViz.updateData(&mEnv);
 
-    mVizkit3DWidget.getWidget()->addDataHandler(&mRigidBodyViz);
+    mVizkit3DWidget.getWidget()->addPlugin(&mRigidBodyViz);
 
-    mVizkit3DWidget.getWidget()->addDataHandler(&mTrajectoryViz);
+    mVizkit3DWidget.getWidget()->addPlugin(&mTrajectoryViz);
 
     mTrajectorySplineViz.setColor(0.0, 1.0, 0.0, 1.0);
-    mVizkit3DWidget.getWidget()->addDataHandler(&mTrajectorySplineViz);
+    mVizkit3DWidget.getWidget()->addPlugin(&mTrajectorySplineViz);
 
     mMotionCommandViz.setFrontAxis(vizkit::MotionCommandVisualization::FrontAxisX);
-    mVizkit3DWidget.getWidget()->addDataHandler(&mMotionCommandViz);
+    mVizkit3DWidget.getWidget()->addPlugin(&mMotionCommandViz);
     
     // Add pointcloud
     mpEnvirePointcloud = new envire::Pointcloud;
