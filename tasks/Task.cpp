@@ -61,7 +61,7 @@ bool Task::configureHook()
     mTrajectorySplineViz.setColor(0.0, 1.0, 0.0, 1.0);
     mVizkit3DWidget.getWidget()->addPlugin(&mTrajectorySplineViz);
 
-    mMotionCommandViz.setFrontAxis(vizkit::MotionCommandVisualization::FrontAxisX);
+    mMotionCommandViz.setFrontAxis(vizkit3d::MotionCommandVisualization::FrontAxisX);
     mVizkit3DWidget.getWidget()->addPlugin(&mMotionCommandViz);
     
     // Add pointcloud

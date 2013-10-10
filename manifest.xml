@@ -7,6 +7,7 @@
   <url>http://</url>
   <logo>http://</logo>
   <depend package="slam/orogen/envire" />
-  <depend package="gui/vizkit" />
+  <depend package="gui/vizkit3d" />
+  <depend package="base/types" />
   <depend package="base/orogen/types" />
 </package>

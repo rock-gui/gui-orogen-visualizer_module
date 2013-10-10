@@ -6,8 +6,8 @@ import_types_from 'base'
 import_types_from 'envire'
 
 using_library 'envire'
-using_library 'vizkit'
-using_library 'vizkit-base-viz'
+using_library 'vizkit3d'
+using_library 'base-viz'
 using_library 'envire-viz'
 
 task_context "Task" do

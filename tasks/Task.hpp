@@ -8,12 +8,12 @@
 #include <envire/Core.hpp>
 #include <envire/maps/Pointcloud.hpp>
 
-#include <vizkit/Vizkit3DWidget.hpp>
-#include <vizkit/QtThreadedWidget.hpp>
-#include <vizkit/EnvireVisualization.hpp>
-#include <vizkit/RigidBodyStateVisualization.hpp>
-#include <vizkit/TrajectoryVisualization.hpp>
-#include <vizkit/MotionCommandVisualization.hpp>
+#include <vizkit3d/Vizkit3DWidget.hpp>
+#include <vizkit3d/QtThreadedWidget.hpp>
+#include <vizkit3d/EnvireVisualization.hpp>
+#include <vizkit3d/RigidBodyStateVisualization.hpp>
+#include <vizkit3d/TrajectoryVisualization.hpp>
+#include <vizkit3d/MotionCommandVisualization.hpp>
 
 namespace visualizer_module {
 
@@ -29,12 +29,12 @@ namespace visualizer_module {
         envire::Pointcloud* mpEnvirePointcloud;
         envire::FrameNode* mpFrameNodePointcloud;
         // Vizkit
-        QtThreadedWidget<vizkit::Vizkit3DWidget> mVizkit3DWidget;
+        QtThreadedWidget<vizkit3d::Vizkit3DWidget> mVizkit3DWidget;
         envire::EnvireVisualization mEnvViz;
-        vizkit::RigidBodyStateVisualization mRigidBodyViz;
-        vizkit::TrajectoryVisualization mTrajectoryViz;
-        vizkit::TrajectoryVisualization mTrajectorySplineViz;
-        vizkit::MotionCommandVisualization mMotionCommandViz;
+        vizkit3d::RigidBodyStateVisualization mRigidBodyViz;
+        vizkit3d::TrajectoryVisualization mTrajectoryViz;
+        vizkit3d::TrajectoryVisualization mTrajectorySplineViz;
+        vizkit3d::MotionCommandVisualization mMotionCommandViz;
 
     public:
         /** TaskContext constructor for Task
